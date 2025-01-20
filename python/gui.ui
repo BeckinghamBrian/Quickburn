@@ -78,7 +78,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="PlotWidget" name="TC2_Widget" native="true">
+   <widget class="PlotWidget" name="LOX_Temp_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1620</x>
@@ -88,7 +88,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="tank_graphic">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -101,7 +101,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/imgs/imgs/Quickburn GUI Background.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="PlotWidget" name="TC1_Widget" native="true">
+   <widget class="PlotWidget" name="ETH_Temp_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1295</x>
@@ -111,7 +111,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT2_Press_Widget" native="true">
+   <widget class="PlotWidget" name="Reg_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>970</x>
@@ -121,7 +121,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT6_Press_Widget" native="true">
+   <widget class="PlotWidget" name="ETH_MPV_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1295</x>
@@ -131,7 +131,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT5_Press_Widget" native="true">
+   <widget class="PlotWidget" name="LOX_MPV_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1620</x>
@@ -141,7 +141,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT3_Press_Widget" native="true">
+   <widget class="PlotWidget" name="LOX_Tank_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1620</x>
@@ -151,7 +151,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT4_Press_Widget" native="true">
+   <widget class="PlotWidget" name="ETH_Tank_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>1295</x>
@@ -161,7 +161,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT1_Press_Widget" native="true">
+   <widget class="PlotWidget" name="N2_Bottle_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>645</x>
@@ -171,7 +171,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="PlotWidget" name="PT7_Press_Widget" native="true">
+   <widget class="PlotWidget" name="PC_Press_Widget" native="true">
     <property name="geometry">
      <rect>
       <x>970</x>
@@ -181,7 +181,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="PT3_title">
+   <widget class="QLabel" name="ETH_Tank_title">
     <property name="geometry">
      <rect>
       <x>1345</x>
@@ -196,13 +196,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-3 Pressure</string>
+     <string>ETH Tank Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT4_title">
+   <widget class="QLabel" name="LOX_Tank_title">
     <property name="geometry">
      <rect>
       <x>1670</x>
@@ -217,13 +217,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-4 Pressure</string>
+     <string>LOX Tank Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT6_title">
+   <widget class="QLabel" name="LOX_MPV_Press_title">
     <property name="geometry">
      <rect>
       <x>1670</x>
@@ -238,13 +238,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-6 Pressure</string>
+     <string>LOX MPV Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT5_title">
+   <widget class="QLabel" name="ETH_MPV_Press_title">
     <property name="geometry">
      <rect>
       <x>1345</x>
@@ -259,13 +259,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-5 Pressure</string>
+     <string>ETH MPV Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="TC1_title">
+   <widget class="QLabel" name="ETH_Temp_title">
     <property name="geometry">
      <rect>
       <x>1345</x>
@@ -280,13 +280,13 @@
      </font>
     </property>
     <property name="text">
-     <string>TC-1 Temp</string>
+     <string>ETH MPV Temp</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="TC2_title">
+   <widget class="QLabel" name="LOX_Temp_title">
     <property name="geometry">
      <rect>
       <x>1670</x>
@@ -301,13 +301,13 @@
      </font>
     </property>
     <property name="text">
-     <string>TC-2 Temp</string>
+     <string>LOX MPV Temp</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT7_title">
+   <widget class="QLabel" name="PC_Press_title">
     <property name="geometry">
      <rect>
       <x>1020</x>
@@ -322,13 +322,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-7 Pressure</string>
+     <string>PC Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT2_title">
+   <widget class="QLabel" name="Reg_Press_title">
     <property name="geometry">
      <rect>
       <x>1020</x>
@@ -343,13 +343,13 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-2 Pressure</string>
+     <string>Reg Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT1_title">
+   <widget class="QLabel" name="N2_bottle_Press_title">
     <property name="geometry">
      <rect>
       <x>695</x>
@@ -364,7 +364,7 @@
      </font>
     </property>
     <property name="text">
-     <string>PT-1 Pressure</string>
+     <string>N2 Bottle Press</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -383,7 +383,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/imgs/imgs/logo.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="PT1_label">
+   <widget class="QLabel" name="N2_bottle_press_label">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -419,7 +419,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT3_label">
+   <widget class="QLabel" name="ETH_Tank_label">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -455,7 +455,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT2_label">
+   <widget class="QLabel" name="Reg_Press_label">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -491,7 +491,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT4_label">
+   <widget class="QLabel" name="LOX_Tank_label">
     <property name="geometry">
      <rect>
       <x>740</x>
@@ -527,7 +527,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT5_label">
+   <widget class="QLabel" name="ETH_MPV_Press_label">
     <property name="geometry">
      <rect>
       <x>405</x>
@@ -563,7 +563,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT6_label">
+   <widget class="QLabel" name="LOX_MPV_Press_label">
     <property name="geometry">
      <rect>
       <x>545</x>
@@ -599,7 +599,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="PT7_label">
+   <widget class="QLabel" name="PC_Press_label">
     <property name="geometry">
      <rect>
       <x>475</x>
@@ -635,7 +635,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="TC2_label">
+   <widget class="QLabel" name="LOX_Temp_label">
     <property name="geometry">
      <rect>
       <x>545</x>
@@ -671,7 +671,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="TC1_label">
+   <widget class="QLabel" name="ETH_Temp_label">
     <property name="geometry">
      <rect>
       <x>405</x>
@@ -707,7 +707,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="fuel_vent_label">
+   <widget class="QLabel" name="fuel_VV_label">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -731,9 +731,9 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -769,9 +769,9 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -807,9 +807,9 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -851,7 +851,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="MFV_label">
+   <widget class="QLabel" name="ETH_MPV_label">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -995,7 +995,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="MOV_label">
+   <widget class="QLabel" name="LOX_MPV_label">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -1283,7 +1283,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="ox_vent_label">
+   <widget class="QLabel" name="ox_VV_label">
     <property name="geometry">
      <rect>
       <x>955</x>
@@ -1422,6 +1422,268 @@
     </property>
     <property name="text">
      <string>CLOSED</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startHighSpeedButton">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>240</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>START HIGH SPEED</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopHighSpeedButton">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>300</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>STOP HIGH SPEED</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="safeButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>310</y>
+      <width>251</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0,255,0)</string>
+    </property>
+    <property name="text">
+     <string>SAFE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleNIVButton">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>20</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TOGGLE NIV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleFuelVVButton">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>70</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TOGGLE FUEL VV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleOxVVButton">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>70</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TOGGLE OX VV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleFuelMPVButton">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>120</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TOGGLE FUEL MPV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleOxMPVButton">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>120</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TOGGLE OX MPV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openAllButton">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>20</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>OPEN ALL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="closeAllButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>530</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>CLOSE ALL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pressButton">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>530</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>PRESS</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fireButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>930</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>FIRE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fireButtonLabel">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>980</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(push for fire)</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
