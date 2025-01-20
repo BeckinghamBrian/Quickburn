@@ -8,22 +8,26 @@
 // put function declarations here:
 void dataToBuffer1();
 void dataToBuffer2();
+void startHighSpeed();
+void stopHighSpeed();
 void readData();
-void writeData(int, float (*)[10]);
+void writeData(int, float (*)[11]);
 
 // Create an IntervalTimer object 
 IntervalTimer myTimer;
 
 const int ledPin = LED_BUILTIN;  // the pin with a LED
 
-const float sampleRate = 5000; // Hz
+const float sampleRate = 4500; // Hz
 
 const float TIME_STEP = 1 / sampleRate;
 
-const float delay_in_microseconds = 1000000 / sampleRate; // convert from Hz to microseconds
+const float highSpeed = 1000000 / sampleRate; // convert from Hz to microseconds
+//const float highSpeed = 210; //4761.9 hz
+const float lowSpeed = 10000;
 
 #define BUFFER_SIZE 50  // Number of entries in each buffer
-#define ENTRY_SIZE 10   // Number of float values per entry
+#define ENTRY_SIZE 11   // Number of float values per entry
 
 // Define two buffers as 2D arrays of floats
 float buffer1[BUFFER_SIZE][ENTRY_SIZE] = {{0}};
@@ -43,7 +47,7 @@ bool saveFromBuffer1 = false;
 bool saveFromBuffer2 = false;
 
 // Initialize all the pins we could want to use (only reading 9)
-// float pin1 = A0;    
+float pin1 = A0;    
 float pin2 = A1; 
 float pin3 = A2; 
 float pin4 = A3; 
@@ -158,7 +162,7 @@ void setup() {
   Serial.println(fileName);
 
   // start the sampling rate object, this will interrupt (hopefully) all functions to maintain sample rate
-  myTimer.begin(readData, delay_in_microseconds);  // (program, delay in microseconds)
+  myTimer.begin(readData, lowSpeed);  // (program, delay in microseconds)
 }
 
 // The main program will print the data to serial monitor
@@ -179,8 +183,21 @@ void loop() {
     // newState = newState - 49;
     // Serial.println(Serial.read());
     Serial.println(newState);
+    switch (newState)
+    {
+    case 90:
+      startHighSpeed();
+      break;
+
+    case 91:
+      stopHighSpeed();
+      break;
     
-    stateMachine(&NIV, &fuelVent, &oxVent, &MFV, &MOV, newState, logName);
+    default:
+      stateMachine(&NIV, &fuelVent, &oxVent, &MFV, &MOV, newState, logName);
+      break;
+    }
+    
   }
 }
 
@@ -188,7 +205,7 @@ void loop() {
 void dataToBuffer1() {
   // read data into buffer1
   buffer1[buffer1_index][0] = micros();
-  buffer1[buffer1_index][1] = analogRead(pin10);
+  buffer1[buffer1_index][1] = analogRead(pin1);
   buffer1[buffer1_index][2] = analogRead(pin2);
   buffer1[buffer1_index][3] = analogRead(pin3);
   buffer1[buffer1_index][4] = analogRead(pin4);
@@ -197,13 +214,15 @@ void dataToBuffer1() {
   buffer1[buffer1_index][7] = analogRead(pin7);
   buffer1[buffer1_index][8] = analogRead(pin8);
   buffer1[buffer1_index][9] = analogRead(pin9);
+  buffer1[buffer1_index][10] = analogRead(pin10);
   buffer1_index++;
 }
 
 void dataToBuffer2() {
+
   // read data into buffer2
   buffer2[buffer2_index][0] = micros();
-  buffer2[buffer2_index][1] = analogRead(pin10);
+  buffer2[buffer2_index][1] = analogRead(pin1);
   buffer2[buffer2_index][2] = analogRead(pin2);
   buffer2[buffer2_index][3] = analogRead(pin3);
   buffer2[buffer2_index][4] = analogRead(pin4);
@@ -212,7 +231,16 @@ void dataToBuffer2() {
   buffer2[buffer2_index][7] = analogRead(pin7);
   buffer2[buffer2_index][8] = analogRead(pin8);
   buffer2[buffer2_index][9] = analogRead(pin9);
+  buffer2[buffer2_index][10] = analogRead(pin10);
   buffer2_index++;
+}
+
+void startHighSpeed(){
+  myTimer.update(highSpeed);
+}
+
+void stopHighSpeed(){
+  myTimer.update(lowSpeed);
 }
 
 // functions called by IntervalTimer should be short, run as quickly as
@@ -262,11 +290,8 @@ void writeData(int buffer_select, float buffer[BUFFER_SIZE][ENTRY_SIZE]) {
       }
       buffer[i][j] = 0; // Clear buffer after writing
     }
-    Serial.print(buffer[i][1]);
     Serial.println(" ");
     if (dataFile){
-      // Serial.println("SD write");
-      dataFile.print(buffer[i][1]);
       dataFile.println(" ");
     }
   }

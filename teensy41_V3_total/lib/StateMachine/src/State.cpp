@@ -242,14 +242,14 @@ void press(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logFil
 }
 
 void fire(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logFile){
-    digitalWrite(*NIV, LOW);
+    digitalWrite(*NIV, HIGH);
     digitalWrite(*fuelVent, LOW);
     digitalWrite(*oxVent, LOW);
     digitalWrite(*MFV, HIGH);
     digitalWrite(*MOV, HIGH);
     logFile.println("fire");
     Serial.println("fire");
-    
+
 }
 
 void open_all(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logFile){
@@ -463,14 +463,14 @@ void valve14(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logF
 }
 
 void valve15(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logFile){
-    digitalWrite(*NIV, HIGH);
+    digitalWrite(*NIV, LOW);
     digitalWrite(*fuelVent, LOW);
     digitalWrite(*oxVent, LOW);
     digitalWrite(*MFV, HIGH);
     digitalWrite(*MOV, HIGH);
     logFile.println("valve15");
     Serial.println("valve15");
-
+    
 }
 
 void valve16(int* NIV, int* fuelVent, int* oxVent, int* MFV, int* MOV, File logFile){
