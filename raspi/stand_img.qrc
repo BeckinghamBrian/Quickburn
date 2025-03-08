@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="imgs">
+    <file>imgs/Quickburn GUI Background.png</file>
+    <file>imgs/logo.png</file>
+  </qresource>
+</RCC>
