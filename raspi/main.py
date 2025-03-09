@@ -20,9 +20,14 @@ import stand_img_rc
 import time
 import traceback, sys
 import serial
+from serial import rs485
 import numpy as np
 
-teensy = serial.Serial(port='COM3', baudrate=115200, timeout=0)
+port = "/dev/serial0"
+baudrate = 115200
+
+teensy = serial.Serial(port, baudrate, timeout=0)
+teensy.rs485_mode = serial.rs485.RS485Settings(False,True)
 
 FILE = open("test.txt", "w")
 
@@ -484,7 +489,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if (teensy.in_waiting > 0):
                     value = self.read()
                     FILE.write(value)
-                    # print(value)
+                    print(value)
                     
                     if self.newCommand:
                         # print(self.commandtosend)
