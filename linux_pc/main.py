@@ -22,7 +22,7 @@ import traceback, sys
 import serial
 import numpy as np
 
-teensy = serial.Serial(port='/dev/ttyACM0', baudrate=115200, timeout=0)
+teensy = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, timeout=0)
 
 FILE = open("test.txt", "w")
 
@@ -133,7 +133,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.oxMPV_temp_plot_data = []
         self.loadcell_plot_data = []
 
-        self.commandtosend = bytes([0])
+        self.commandtosend = 'a'
         self.newCommand = False
         
         # get primary state buttons wired up
@@ -163,43 +163,43 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dataThreadStart()
         
         self.stateDict = {
-            '00000' : 0,
-            '01100' : 1,
-            '10000' : 2,
-            '10011' : 3,
-            '11111' : 4,
-            '00100' : 5,
-            '01000' : 6,
-            '00001' : 7,
-            '00010' : 8,
-            '10100' : 9,
-            '11000' : 10,
-            '11100' : 11,
-            '00101' : 12,
-            '00110' : 13,
-            '00111' : 14,
-            '01001' : 15,
-            '01010' : 16,
-            '01011' : 17,
-            '01101' : 18,
-            '01110' : 19,
-            '01111' : 20,
-            '10001' : 21,
-            '10010' : 22,
-            '00011' : 23,
-            '10101' : 24,
-            '10110' : 25,
-            '10111' : 26,
-            '11001' : 27,
-            '11010' : 28,
-            '11011' : 29,
-            '11101' : 30,
-            '11110' : 31
+            '00000' : 'a',
+            '01100' : 'b',
+            '10000' : 'c',
+            '10011' : 'd',
+            '11111' : 'e',
+            '00100' : 'f',
+            '01000' : 'g',
+            '00001' : 'h',
+            '00010' : 'i',
+            '10100' : 'j',
+            '11000' : 'k',
+            '11100' : 'l',
+            '00101' : 'm',
+            '00110' : 'n',
+            '00111' : 'o',
+            '01001' : 'p',
+            '01010' : 'q',
+            '01011' : 'r',
+            '01101' : 's',
+            '01110' : 't',
+            '01111' : 'u',
+            '10001' : 'v',
+            '10010' : 'w',
+            '00011' : 'x',
+            '10101' : 'y',
+            '10110' : 'z',
+            '10111' : 'A',
+            '11001' : 'B',
+            '11010' : 'C',
+            '11011' : 'D',
+            '11101' : 'E',
+            '11110' : 'F'
             }
         
     def closeAll(self):
         
-        self.commandtosend = bytes([0])
+        self.commandtosend = 'a'
         self.newCommand = True
         
         self.toggleNIV = '0'
@@ -221,7 +221,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def safe(self):
         
-        self.commandtosend = bytes([1])
+        self.commandtosend = 'b'
         self.newCommand = True
         
         self.toggleNIV = '0'
@@ -243,7 +243,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def press(self):
         
-        self.commandtosend = bytes([2])
+        self.commandtosend = 'c'
         self.newCommand = True
         
         self.toggleNIV = '1'
@@ -265,7 +265,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def fire(self):
         
-        self.commandtosend = bytes([3])
+        self.commandtosend = 'd'
         self.newCommand = True
         
         self.toggleNIV = '1'
@@ -287,7 +287,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def openAll(self):
         
-        self.commandtosend = bytes([4])
+        self.commandtosend = 'e'
         self.newCommand = True
         
         self.toggleNIV = '1'
@@ -372,18 +372,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.newCommand = True
         print(temp)
         print(self.stateDict[temp])
-        print(bytes([self.stateDict[temp]]))
-        self.commandtosend = bytes([self.stateDict[temp]])
+        #print(self.stateDict[temp])
+        self.commandtosend = self.stateDict[temp]
         
     def startHighSpeed(self):
         
         self.newCommand = True
-        self.commandtosend = bytes([90])
+        self.commandtosend = 'Y'
 
     def stopHighSpeed(self):
         
         self.newCommand = True
-        self.commandtosend = bytes([91])
+        self.commandtosend = 'Z'
         
     def dataThreadStart(self):
         
@@ -479,8 +479,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # starting state (close all)
         state=0
         print(state)
-        print(self.commandtosend)
-        teensy.write(self.commandtosend)
+        print(self.commandtosend.encode())
+        teensy.write(self.commandtosend.encode())
         counter = 0
         
         while (True):
@@ -493,7 +493,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     
                     if self.newCommand:
                         # print(self.commandtosend)
-                        teensy.write(self.commandtosend)
+                        teensy.write(self.commandtosend.encode())
                         self.newCommand = False
                         
                     if (counter % 100 == 0):
