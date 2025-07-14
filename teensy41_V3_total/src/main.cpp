@@ -4,17 +4,24 @@
 #include <iostream>
 #include <stdbool.h> // Allows use of booleans
 #include <State.h>
+#include "HX711.h"
+
+#define SCK 27
+#define DT 26
+
+HX711 scale;
 
 // put function declarations here:
 void dataToBuffer1();
 void dataToBuffer2();
 void startHighSpeed();
 void stopHighSpeed();
+void readLoadCell();
 void readData();
 void writeData(int, float (*)[11]);
 
 // Create an IntervalTimer object 
-IntervalTimer myTimer;
+IntervalTimer myTimer, loadCell;
 
 const int ledPin = LED_BUILTIN;  // the pin with a LED
 
@@ -30,8 +37,11 @@ const float lowSpeed = 10000;
 #define ENTRY_SIZE 11   // Number of float values per entry
 
 // Define two buffers as 2D arrays of floats
-float buffer1[BUFFER_SIZE][ENTRY_SIZE] = {{0}};
-float buffer2[BUFFER_SIZE][ENTRY_SIZE] = {{0}};
+float buffer1[BUFFER_SIZE][ENTRY_SIZE] = {{0.0}};
+float buffer2[BUFFER_SIZE][ENTRY_SIZE] = {{0.0}};
+
+// Define loadcell variable
+long loadcell = 0;
 
 // state machine byte
 int newState = 0;
@@ -47,24 +57,22 @@ bool saveFromBuffer1 = false;
 bool saveFromBuffer2 = false;
 
 // Initialize all the pins we could want to use (only reading 9)
-float pin1 = A0;    
-float pin2 = A1; 
-float pin3 = A2; 
-float pin4 = A3; 
-float pin5 = A4; 
-float pin6 = A5; 
-float pin7 = A6; 
-float pin8 = A7; 
-float pin9 = A8; 
-float pin10 = A9; 
-float pin11 = A10; 
-float pin12 = A11; 
-float pin13 = A12; 
-float pin14 = A13; 
-float pin15 = A14; 
-float pin16 = A15; 
-float pin17 = A16;  
-float pin18 = A17;
+float pin1 = A9;    
+float pin2 = A8; 
+float pin3 = A7; 
+float pin4 = A6; 
+float pin5 = A5; 
+float pin6 = A4; 
+float pin7 = A3; 
+float pin8 = A2; 
+float pin9 = A1; 
+float pin10 = A0; 
+float pin11 = A17; 
+float pin12 = A16; 
+float pin13 = A15; 
+float pin14 = A14; 
+float pin15 = A11; 
+float pin16 = A10; 
 
 // Valve pin numbers
 int NIV = 28;
@@ -72,6 +80,8 @@ int fuelVent = 29;
 int oxVent = 30;
 int MFV = 31;
 int MOV = 32;
+int RELAY_1 = 11;
+int RELAY_2 = 12;
 
 // SD card variable initializations
 // change this to match your SD shield or module;
@@ -110,6 +120,8 @@ void setup() {
   pinMode(oxVent, OUTPUT);
   pinMode(MFV, OUTPUT);
   pinMode(MOV, OUTPUT);
+  pinMode(RELAY_1, OUTPUT);
+  pinMode(RELAY_2, OUTPUT);
 
   // set all pins low (closed) on power up
   digitalWrite(NIV, LOW);
@@ -117,10 +129,13 @@ void setup() {
   digitalWrite(oxVent, LOW);
   digitalWrite(MFV, LOW);
   digitalWrite(MOV, LOW);
+  digitalWrite(RELAY_1, LOW);
+  digitalWrite(RELAY_2, LOW);
 
   // start serial, i used 115200 because it was big, can always change this
   // baud rates must match on both ends of comms
   Serial.begin(115200);
+  scale.begin(DT, SCK);
 
   // unsure if this is necessary but it works
   analogReadResolution(12);
@@ -163,6 +178,7 @@ void setup() {
 
   // start the sampling rate object, this will interrupt (hopefully) all functions to maintain sample rate
   myTimer.begin(readData, lowSpeed);  // (program, delay in microseconds)
+  // loadCell.begin(readLoadCell, 10000); // read loadcell every 100Hz
 }
 
 // The main program will print the data to serial monitor
@@ -212,9 +228,10 @@ void dataToBuffer1() {
   buffer1[buffer1_index][5] = analogRead(pin5);
   buffer1[buffer1_index][6] = analogRead(pin6);
   buffer1[buffer1_index][7] = analogRead(pin7);
-  buffer1[buffer1_index][8] = analogRead(pin8);
-  buffer1[buffer1_index][9] = analogRead(pin9);
-  buffer1[buffer1_index][10] = analogRead(pin10);
+  buffer1[buffer1_index][8] = analogRead(pin15);
+  buffer1[buffer1_index][9] = analogRead(pin16);
+  // buffer1[buffer1_index][10] = loadcell;
+  buffer1[buffer1_index][10] = 0.0;
   buffer1_index++;
 }
 
@@ -231,7 +248,8 @@ void dataToBuffer2() {
   buffer2[buffer2_index][7] = analogRead(pin7);
   buffer2[buffer2_index][8] = analogRead(pin8);
   buffer2[buffer2_index][9] = analogRead(pin9);
-  buffer2[buffer2_index][10] = analogRead(pin10);
+  // buffer2[buffer2_index][10] = loadcell;
+  buffer2[buffer2_index][10] = 0.0;
   buffer2_index++;
 }
 
@@ -241,6 +259,10 @@ void startHighSpeed(){
 
 void stopHighSpeed(){
   myTimer.update(lowSpeed);
+}
+
+void readLoadCell(){
+  loadcell =  scale.get_units(10);
 }
 
 // functions called by IntervalTimer should be short, run as quickly as
